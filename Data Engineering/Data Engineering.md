@@ -3,60 +3,52 @@
 ```mermaid
 flowchart TD
     %% Pipeline spine
-    SRC([Source]):::spine --> ING[Ingestion & Movement]:::ingestion
-    ING --> STOR[Storage & Processing]:::storage
-    STOR --> MOD[Data Modeling]:::modeling
-    MOD --> CONS([Consumption]):::spine
+    SRC([Source]) --> ING[Ingestion & Movement]
+    ING --> STOR[Storage & Processing]
+    STOR --> MOD[Data Modeling]
+    MOD --> CONS([Consumption])
 
     %% Ingestion Layer
     subgraph Ingestion & Movement
-        ELT["1. ELT Pattern"]:::ingestion
-        BATCH["2. Batch Processing"]:::ingestion
-        CDC["3. Change Data Capture"]:::ingestion
-        ETL["4. ETL Pattern"]:::ingestion
-        STREAM["5. Streaming + Kappa Architecture"]:::ingestion
-        EDA["6. Event-Driven Architecture"]:::ingestion
-        REVETL["7. Reverse ETL"]:::ingestion
-        LAMBDA["8. Lambda Architecture"]:::ingestion
+        ELT["1. ELT Pattern"]
+        BATCH["2. Batch Processing"]
+        CDC["3. Change Data Capture"]
+        ETL["4. ETL Pattern"]
+        STREAM["5. Streaming + Kappa Architecture"]
+        EDA["6. Event-Driven Architecture"]
+        REVETL["7. Reverse ETL"]
+        LAMBDA["8. Lambda Architecture"]
     end
 
     %% Storage Layer
     subgraph Storage & Processing
-        MEDALLION["1. Medallion Architecture"]:::storage
-        LAKEHOUSE["2. Lakehouse Architecture"]:::storage
-        DATALAKE["3. Data Lake (Raw Zone)"]:::storage
-        FABRIC["4. Data Fabric"]:::storage
-        MESH["5. Data Mesh"]:::storage
+        MEDALLION["1. Medallion Architecture"]
+        LAKEHOUSE["2. Lakehouse Architecture"]
+        DATALAKE["3. Data Lake (Raw Zone)"]
+        FABRIC["4. Data Fabric"]
+        MESH["5. Data Mesh"]
     end
 
     %% Modeling Layer
     subgraph Data Modeling
-        KIMBALL["1. Kimball Dimensional Modeling"]:::modeling
-        OBT["2. One Big Table (OBT)"]:::modeling
-        VAULT["3. Data Vault 2.0"]:::modeling
-        SNOW["4. Snowflake Schema"]:::modeling
-        GALAXY["5. Galaxy Schema (Constellation)"]:::modeling
-        INMON["6. Inmon 3NF Enterprise DW"]:::modeling
+        KIMBALL["1. Kimball Dimensional Modeling"]
+        OBT["2. One Big Table (OBT)"]
+        VAULT["3. Data Vault 2.0"]
+        SNOW["4. Snowflake Schema"]
+        GALAXY["5. Galaxy Schema (Constellation)"]
+        INMON["6. Inmon 3NF Enterprise DW"]
     end
 
     %% Cross-cutting Orchestration
     subgraph Orchestration
-        DAG["1. Workflow DAG Pattern (Airflow, Dagster, Prefect)"]:::orchestration
-        EVENTORCH["2. Event/Trigger-based Orchestration"]:::orchestration
+        DAG["1. Workflow DAG Pattern (Airflow, Dagster, Prefect)"]
+        EVENTORCH["2. Event/Trigger-based Orchestration"]
     end
 
     %% Cross-cutting Governance
     subgraph Governance & Quality
-        SCD["1. Slowly Changing Dimensions (SCD 1/2/3)"]:::governance
-        OBS["2. Data Observability"]:::governance
-        CONTRACTS["3. Data Contracts"]:::governance
-        MDM["4. Master Data Management (MDM)"]:::governance
+        SCD["1. Slowly Changing Dimensions (SCD 1/2/3)"]
+        OBS["2. Data Observability"]
+        CONTRACTS["3. Data Contracts"]
+        MDM["4. Master Data Management (MDM)"]
     end
-
-    %% Styles
-    classDef spine fill=#0B1220,stroke=#5EEAD4,stroke-width=2px,color=#E8EDF7;
-    classDef ingestion fill=#121A2B,stroke=#5EEAD4,stroke-width=2px,color=#E8EDF7;
-    classDef storage fill=#121A2B,stroke=#7C9EFF,stroke-width=2px,color=#E8EDF7;
-    classDef modeling fill=#121A2B,stroke=#C792EA,stroke-width=2px,color=#E8EDF7;
-    classDef orchestration fill=#0F1626,stroke=#F5A65B,stroke-dasharray: 5 5,stroke-width=2px,color=#E8EDF7;
-    classDef governance fill=#0F1626,stroke=#F5A65B,stroke-dasharray: 5 5,stroke-width=2px,color=#E8EDF7;
